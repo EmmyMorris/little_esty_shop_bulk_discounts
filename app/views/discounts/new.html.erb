@@ -3,12 +3,12 @@
    <%= form.text_field :name %>
    <br>
    <br>
-   <label for="percentage_discount">Percentage Discount(ex: 15 = 15%):</label>
-   <input type="number" id="percentage_discount" name="percentage_discount" min="5" max="100">
+   <%= form.label :percentage_discount %>(ex: 15 = 15%):
+   <%= form.number_field :percentage_discount, min: 5, max: 100 %>
    <br>
    <br>
-   <label for="quantity">Quantity:</label>
-   <input type="number" id="quantity" name="quantity" min="1" max="100" value="5">
+   <%= form.label :quantity %>:
+   <%= form.number_field :quantity, min: 1, max: 30 %>
    <br>
    <br>
    <%= form.hidden_field :merchant_id, value: @merchant.id %>
