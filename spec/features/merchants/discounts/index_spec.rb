@@ -70,13 +70,24 @@ describe 'Discount Index Page' do
     click_link "Create New Discount"
     expect(current_path).to eq("/merchant/#{@m1.id}/discounts/new")
     fill_in('name', with: 'Discount 3')
-    fill_in('Percentage Discount:', with: 10)
-    fill_in('Quantity:', with: 12)
+    fill_in('Percentage discount', with: 10)
+    fill_in('quantity', with: 12)
     click_button('Create Discount')
     expect(current_path).to eq("/merchant/#{@m1.id}/discounts")
     expect(page).to have_content("Discount Name: Discount 3")
-    expect(page).to have_content("Discount Percentage: 10")
+    expect(page).to have_content("Discount Percentage: 10%")
     expect(page).to have_content("Item Quantity: 12")
+  end
+
+  it "Redirects if form is not filled out completely" do
+    visit ("/merchant/#{@m1.id}/discounts")
+    expect(page).to have_link("Create New Discount")
+    click_link "Create New Discount"
+    expect(current_path).to eq("/merchant/#{@m1.id}/discounts/new")
+    #Did not fill out form
+    click_button('Create Discount')
+    expect(current_path).to eq("/merchant/#{@m1.id}/discounts")
+    expect(page).to have_content("Error: Percentage discount can't be blank, Name can't be blank, Quantity can't be blank")
   end
 
   it "Can show a link to delete a discount and delete it" do
@@ -90,13 +101,13 @@ describe 'Discount Index Page' do
     visit ("/merchant/#{@m1.id}/discounts")
     expect(page).to have_link("Delete Discount: #{@d1.name}")
     expect(page).to have_content("Discount Name: small discount")
-    expect(page).to have_content("Discount Percentage: 10")
+    expect(page).to have_content("Discount Percentage: 10%")
     expect(page).to have_content("Item Quantity: 10")
     click_link "Delete Discount: #{@d1.name}"
     expect(current_path).to eq("/merchant/#{@m1.id}/discounts")
     expect(page).to_not have_link("Delete Discount: #{@d1.name}")
     expect(page).to_not have_content("Discount Name: small discount")
-    expect(page).to_not have_content("Discount Percentage: 10")
+    expect(page).to_not have_content("Discount Percentage: 10%")
     expect(page).to_not have_content("Item Quantity: 10")
   end
 end

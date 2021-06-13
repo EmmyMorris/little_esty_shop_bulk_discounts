@@ -15,5 +15,5 @@ Rails.application.routes.draw do
     resources :invoices, except: [:new, :destroy]
   end
 
-  resources :discounts, only: [:show]
+  resources :discounts, only: [:show, :edit, :update]
 end

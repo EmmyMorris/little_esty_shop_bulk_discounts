@@ -1,0 +1,16 @@
+<%= form_with url:  "/discounts/#{@discount.id}", method: :patch, local: true do |form| %>
+   <%= form.label :name %>:
+   <%= form.text_field :name, value: @discount.name  %>
+   <br>
+   <br>
+   <%= form.label :percentage_discount %>(ex: 15 = 15%):
+   <%= form.number_field :percentage_discount, min: 5, max: 100, value: @discount.percentage_discount %>
+   <br>
+   <br>
+   <%= form.label :quantity %>:
+   <%= form.number_field :quantity, min: 1, max: 30, value: @discount.quantity %>
+   <br>
+   <br>
+   <%= form.hidden_field :merchant_id, value: @discount.merchant.id %>
+   <%= form.submit "Save Discount" %>
+<% end %>

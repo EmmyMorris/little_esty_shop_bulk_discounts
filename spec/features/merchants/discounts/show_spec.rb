@@ -17,4 +17,32 @@ describe 'Discount Show Page' do
     expect(page).to have_content(@d1.percentage_discount)
     expect(page).to have_content(@d1.quantity)
   end
+
+  it "Can edit the discount" do
+    # Merchant Bulk Discount Edit
+    # As a merchant
+    # When I visit my bulk discount show page
+    # Then I see a link to edit the bulk discount
+    # When I click this link
+    # Then I am taken to a new page with a form to edit the discount
+    # And I see that the discounts current attributes are pre-poluated in the form
+    # When I change any/all of the information and click submit
+    # Then I am redirected to the bulk discount's show page
+    # And I see that the discount's attributes have been updated
+    visit "/discounts/#{@d1.id}"
+    # save_and_open_page
+    expect(page).to have_content("Discount Name: small discount")
+    expect(page).to have_content("Discount Percentage: 10%")
+    expect(page).to have_content("Item Quantity: 10")
+    expect(page).to have_link("Edit Discount")
+    click_link "Edit Discount"
+    expect(current_path).to eq("/discounts/#{@d1.id}/edit")
+    fill_in('name', with: 'Discount 3')
+    fill_in('Percentage discount', with: 15)
+    click_button('Save Discount')
+    expect(current_path).to eq("/discounts/#{@d1.id}")
+    expect(page).to have_content("Discount Name: Discount 3")
+    expect(page).to have_content("Discount Percentage: 15%")
+    expect(page).to have_content("Item Quantity: 10")
+  end
 end

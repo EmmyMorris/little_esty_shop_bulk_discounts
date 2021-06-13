@@ -8,7 +8,7 @@
 <h4>Discounts</h4>
 <% @discounts.each do |discount| %>
 <p>Discount Name: <%= link_to "#{discount.name}", "/discounts/#{discount.id}"  %></p>
-<p>Discount Percentage: <%= discount.percentage_discount %> </p>
+<p>Discount Percentage: <%= discount.percentage_discount %>% </p>
 <p>Item Quantity: <%= discount.quantity %> </p>
 <%= link_to "Delete Discount: #{discount.name}", "/merchant/#{@merchant.id}/discounts/#{discount.id}", method: :delete %>
 <br><br><br>
