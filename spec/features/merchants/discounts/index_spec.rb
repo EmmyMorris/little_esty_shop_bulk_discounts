@@ -46,11 +46,36 @@ describe 'Discount Index Page' do
     # In this section the name and date of the next 3 upcoming US holidays are listed.
     # Use the Next Public Holidays Endpoint in the [Nager.Date API](https://date.nager.at/swagger/index.html)
     visit ("/merchant/#{@m1.id}/discounts")
+    expect(page).to have_content("Upcoming US Holidays")
     expect(page).to have_content("Independence Day")
     expect(page).to have_content("2021-07-05")
     expect(page).to have_content("Labour Day")
     expect(page).to have_content("2021-09-06")
     expect(page).to have_content("Columbus Day")
     expect(page).to have_content("2021-10-11")
+  end
+
+  it "Creates and shows a new discount" do
+    # Merchant Bulk Discount Create
+    # As a merchant
+    # When I visit my bulk discounts index
+    # Then I see a link to create a new discount
+    # When I click this link
+    # Then I am taken to a new page where I see a form to add a new bulk discount
+    # When I fill in the form with valid data
+    # Then I am redirected back to the bulk discount index
+    # And I see my new bulk discount listed
+    visit ("/merchant/#{@m1.id}/discounts")
+    expect(page).to have_link("Create New Discount")
+    click_link "Create New Discount"
+    expect(current_path).to eq("/merchant/#{@m1.id}/discounts/new")
+    fill_in('name', with: 'Discount 3')
+    fill_in('Percentage Discount:', with: 10)
+    fill_in('Quantity:', with: 12)
+    click_button('Create Discount')
+    expect(current_path).to eq("/merchant/#{@m1.id}/discounts")
+    expect(page).to have_content("Discount Name: Discount 3")
+    expect(page).to have_content("Discount Percentage: 10")
+    expect(page).to have_content("Item Quantity: 12")
   end
 end

@@ -1,11 +1,10 @@
 <h1>Discounts for  <%= @merchant.name %></h1>
 <h3>Upcoming US Holidays</h3>
-<% @holidays.each do |holiday| %>
-  <p>Holiday: <%= holiday[:name] %> </p>
-  <p>Date: <%= holiday[:date] %> </p><br>
-<% end %>
 <hr>
 <h3>Merchant: <%= @merchant.name %></h3><br>
+
+<%= link_to "Create New Discount", "/merchant/#{@merchant.id}/discounts/new" %>
+
 <% @discounts.each do |discount| %>
 <p>Discount Name: <%= link_to "#{discount.name}", "/discounts/#{discount.id}"  %></p>
 <p>Discount Percentage: <%= discount.percentage_discount %> </p>
