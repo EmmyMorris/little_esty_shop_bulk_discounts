@@ -30,7 +30,8 @@ class DiscountsController < ApplicationController
   end
 
   def update
-    discount = Discount.find(params[:id])
+    @merchant = Merchant.find(params[:merchant_id])
+    discount = @merchant.discounts.find(params[:id])
     if discount.update(discount_params)
       redirect_to "/discounts/#{discount.id}"
     else

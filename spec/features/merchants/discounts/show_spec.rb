@@ -38,7 +38,7 @@ describe 'Discount Show Page' do
     click_link "Edit Discount"
     expect(current_path).to eq("/discounts/#{@d1.id}/edit")
     fill_in('name', with: 'Discount 3')
-    fill_in('Percentage Discount(ex: 15 = 15%):', with: 15)
+    fill_in('Percentage discount', with: 15)
     click_button('Save Discount')
     expect(current_path).to eq("/discounts/#{@d1.id}")
     expect(page).to have_content("Discount Name: Discount 3")
