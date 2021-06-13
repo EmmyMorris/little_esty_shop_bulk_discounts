@@ -1,4 +1,5 @@
-<h1>Discount: <%= @discount.name %> </h1>
-<h3>Discount Merchant: <%= @merchant.name %> </h3>
-<h3>Discount Percentage: <%= @discount.percentage_discount %> </h3>
-<h3>Discount Quantity: <%= @discount.quantity %> </h3>
+<h1>Discount Name: <%= @discount.name %> </h1>
+<h3>Discount Merchant: <%= @merchant.name %> </h3><br><hr><br>
+<%= link_to "Edit Discount", "/discounts/#{@discount.id}/edit" %><br><br>
+<h4>Discount Percentage: <%= @discount.percentage_discount %>%</h4>
+<h4>Item Quantity: <%= @discount.quantity %> </h4>

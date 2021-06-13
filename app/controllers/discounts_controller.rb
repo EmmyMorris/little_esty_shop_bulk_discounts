@@ -25,6 +25,20 @@ class DiscountsController < ApplicationController
     end
   end
 
+  def edit
+    @discount = Discount.find(params[:id])
+  end
+
+  def update
+    discount = Discount.find(params[:id])
+    if discount.update(discount_params)
+      redirect_to "/discounts/#{discount.id}"
+    else
+      flash[:alert] = "Error: #{error_message(discount.errors)}"
+      render :new
+    end
+  end
+
   def destroy
     @merchant = Merchant.find(params[:merchant_id])
     discount = @merchant.discounts.find(params[:id])

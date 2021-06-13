@@ -70,12 +70,12 @@ describe 'Discount Index Page' do
     click_link "Create New Discount"
     expect(current_path).to eq("/merchant/#{@m1.id}/discounts/new")
     fill_in('name', with: 'Discount 3')
-    fill_in('Percentage Discount:', with: 10)
+    fill_in('Percentage Discount(ex: 15 = 15%):', with: 10)
     fill_in('Quantity:', with: 12)
     click_button('Create Discount')
     expect(current_path).to eq("/merchant/#{@m1.id}/discounts")
     expect(page).to have_content("Discount Name: Discount 3")
-    expect(page).to have_content("Discount Percentage: 10")
+    expect(page).to have_content("Discount Percentage: 10%")
     expect(page).to have_content("Item Quantity: 12")
   end
 
@@ -90,13 +90,13 @@ describe 'Discount Index Page' do
     visit ("/merchant/#{@m1.id}/discounts")
     expect(page).to have_link("Delete Discount: #{@d1.name}")
     expect(page).to have_content("Discount Name: small discount")
-    expect(page).to have_content("Discount Percentage: 10")
+    expect(page).to have_content("Discount Percentage: 10%")
     expect(page).to have_content("Item Quantity: 10")
     click_link "Delete Discount: #{@d1.name}"
     expect(current_path).to eq("/merchant/#{@m1.id}/discounts")
     expect(page).to_not have_link("Delete Discount: #{@d1.name}")
     expect(page).to_not have_content("Discount Name: small discount")
-    expect(page).to_not have_content("Discount Percentage: 10")
+    expect(page).to_not have_content("Discount Percentage: 10%")
     expect(page).to_not have_content("Item Quantity: 10")
   end
 end
