@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Discount Index Page' do
+RSpec.describe 'Discount Index Page' do
   before :each do
     @m1 = Merchant.create!(name: 'Sallies')
 

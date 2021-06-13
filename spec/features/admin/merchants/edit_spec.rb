@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin Merchant Show' do
+RSpec.describe 'Admin Merchant Show' do
   before :each do
     @m1 = Merchant.create!(name: 'Merchant 1')
     visit edit_admin_merchant_path(@m1)

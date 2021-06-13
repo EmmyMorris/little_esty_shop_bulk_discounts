@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "merchant items edit page" do
+RSpec.describe "merchant items edit page" do
   before :each do
     @merchant1 = Merchant.create!(name: 'Hair Care')
 
@@ -42,7 +42,7 @@ describe "merchant items edit page" do
     fill_in "Unit price", with: "15"
 
     click_button "Submit"
-    
+
     expect(current_path).to eq(edit_merchant_item_path(@merchant1, @item_1))
     expect(page).to have_content("All fields must be completed, get your act together.")
   end
