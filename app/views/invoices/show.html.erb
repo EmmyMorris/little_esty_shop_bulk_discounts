@@ -18,8 +18,8 @@
   <br>
 
   <p> Created on: <%= @invoice.created_at.strftime("%A, %B %-d, %Y") %></p>
-  <p>Total Revenue No Discounts: <%= @invoice.total_revenue %></p>
-  <p>Total Revenue With Discounts: <%= @invoice.total_revenue_with_discounts %></p>
+  <p>Total Revenue No Discounts: $<%= @invoice.total_revenue %></p>
+  <p>Total Revenue With Discounts: $<%= @invoice.total_revenue_with_discounts %></p>
 
 
   <h4>Customer:</h4>
@@ -53,9 +53,11 @@
           </tr>
         </section>
           <% if i.applied_discounts.nil? %>
-            <p> No Discounts </p>
+          <%= i.item.name %> <br>
+            <p> No Discounts </p><br>
           <% else %>
-            <%= link_to "#{i.applied_discounts.name}", "/discounts/#{i.applied_discounts.id}" %>
+          <%= i.item.name %> Discount:<br><br>
+            <%= link_to "#{i.applied_discounts.name}", "/discounts/#{i.applied_discounts.id}" %><br><br>
           <% end %>
         <% end %>
     </tbody>
