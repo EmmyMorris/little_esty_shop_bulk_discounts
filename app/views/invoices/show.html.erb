@@ -53,11 +53,9 @@
           </tr>
         </section>
           <% if i.applied_discounts.nil? %>
-          <%= i.item.name %> <br>
-            <p> No Discounts </p><br>
+          <%= i.item.name %> Discount: No Discounts <br><br>
           <% else %>
-          <%= i.item.name %> Discount:<br><br>
-            <%= link_to "#{i.applied_discounts.name}", "/discounts/#{i.applied_discounts.id}" %><br><br>
+          <%= i.item.name %> Discount:  <%= link_to "#{i.applied_discounts.name}", "/discounts/#{i.applied_discounts.id}" %><br><br>
           <% end %>
         <% end %>
     </tbody>
