@@ -81,7 +81,6 @@ RSpec.describe 'invoices show' do
     expect(page).to have_content(@ii_1.quantity)
     expect(page).to have_content(@ii_1.unit_price)
     expect(page).to_not have_content(@ii_4.unit_price)
-
   end
 
   it "shows the total revenue for this invoice" do
@@ -109,10 +108,24 @@ RSpec.describe 'invoices show' do
   it "Shows the total revenue for my merchant from this invoice (not including discounts)" do
     visit merchant_invoice_path(@merchant1, @invoice_1)
     expect(page).to have_content(@invoice_1.total_revenue)
+    expect(page).to have_content('Total Revenue No Discounts: 162.0')
   end
 
   it "Shows the total discounted revenue for my merchant from this invoice which includes bulk discounts in the calculation" do
     visit merchant_invoice_path(@merchant1, @invoice_1)
     expect(page).to have_content(@invoice_1.total_revenue_with_discounts)
+    expect(page).to have_content('Total Revenue With Discounts: 154.8')
+  end
+
+  # Merchant Invoice Show Page: Link to applied discounts
+  # As a merchant
+  # When I visit my merchant invoice show page
+  # Next to each invoice item I see a link to the show page for the bulk discount that was applied (if any)
+  it "Shows a link to the show page for the bulk discount that was applied (if any)" do
+    visit merchant_invoice_path(@merchant1, @invoice_1)
+    expect(page).to have_link("#{@d1.name}")
+    click_link "#{@d1.name}"
+    expect(current_path).to eq("/discounts/#{@d1.id}")
+    expect(page).to have_content("Discount Name: #{@d1.name}")
   end
 end

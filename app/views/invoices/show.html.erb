@@ -44,14 +44,20 @@
             <td style="text-align:center"><%= i.item.name %></td>
             <td style="text-align:center"><%= i.quantity %></td>
             <td style="text-align:center">$<%= i.unit_price %></td>
+
+
             <td style="text-align:center"><%= form_with model: @invoice, url: merchant_invoice_path(@merchant, @invoice), method: :patch do |f| %>
                                             <%= f.select :status, Invoice.statuses.keys, selected: "#{@invoice.status}" %>
                                             <%= f.submit 'Update Invoice' %>
                                           <% end %></td><br/>
           </tr>
         </section>
-      <% end %>
+          <% if i.applied_discounts.nil? %>
+            <p> No Discounts </p>
+          <% else %>
+            <%= link_to "#{i.applied_discounts.name}", "/discounts/#{i.applied_discounts.id}" %>
+          <% end %>
+        <% end %>
     </tbody>
   </table>
-
 </body>
