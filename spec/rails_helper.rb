@@ -33,6 +33,11 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.before(:each) do
+    raw_response_file = File.new("Spec/output.txt")
+    stub_request(:get, "https://date.nager.at/api/v2/NextPublicHolidays/us")
+      .to_return(body: raw_response_file.read)
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

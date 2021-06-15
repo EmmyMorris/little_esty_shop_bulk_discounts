@@ -69,4 +69,14 @@ RSpec.describe 'Admin Invoices Index Page' do
       expect(@i1.status).to eq('complete')
     end
   end
+
+  it "Show the revenue with discounts" do
+    # Admin Invoice Show Page: Total Revenue and Discounted Revenue
+    # As an admin
+    # When I visit an admin invoice show page
+    # Then I see the total revenue from this invoice (not including discounts)
+    # And I see the total discounted revenue from this invoice which includes bulk discounts in the calculation
+    expect(page).to have_content("Total Revenue With Discounts: $#{@i1.total_revenue_with_discounts}")
+    expect(page).to_not have_content(@i2.total_revenue_with_discounts)
+  end
 end

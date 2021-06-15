@@ -47,12 +47,12 @@ RSpec.describe 'Discount Index Page' do
     # Use the Next Public Holidays Endpoint in the [Nager.Date API](https://date.nager.at/swagger/index.html)
     visit ("/merchant/#{@m1.id}/discounts")
     expect(page).to have_content("Upcoming US Holidays")
-    # expect(page).to have_content("Independence Day")
-    # expect(page).to have_content("2021-07-05")
-    # expect(page).to have_content("Labour Day")
-    # expect(page).to have_content("2021-09-06")
-    # expect(page).to have_content("Columbus Day")
-    # expect(page).to have_content("2021-10-11")
+    expect(page).to have_content("Independence Day")
+    expect(page).to have_content("2021-07-05")
+    expect(page).to have_content("Labour Day")
+    expect(page).to have_content("2021-09-06")
+    expect(page).to have_content("Columbus Day")
+    expect(page).to have_content("2021-10-11")
   end
 
   it "Creates and shows a new discount" do
