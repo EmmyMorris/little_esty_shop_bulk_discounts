@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Discount Index Page' do
+RSpec.describe 'Discount Index Page' do
   before :each do
     @m1 = Merchant.create!(name: 'Sallies')
 
@@ -87,7 +87,7 @@ describe 'Discount Index Page' do
     #Did not fill out form
     click_button('Create Discount')
     expect(current_path).to eq("/merchant/#{@m1.id}/discounts")
-    expect(page).to have_content("Error: Percentage discount can't be blank, Name can't be blank, Quantity can't be blank")
+    expect(page).to have_content("Error: Percentage discount can't be blank, Percentage discount is not a number, Name can't be blank, Quantity can't be blank, Quantity is not a number")
   end
 
   it "Can show a link to delete a discount and delete it" do

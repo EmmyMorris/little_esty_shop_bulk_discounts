@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "merchant items show page" do
+RSpec.describe "merchant items show page" do
   before :each do
     @merchant1 = Merchant.create!(name: 'Hair Care')
 

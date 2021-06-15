@@ -18,7 +18,8 @@
   <br>
 
   <p> Created on: <%= @invoice.created_at.strftime("%A, %B %-d, %Y") %></p>
-  <p>Total Revenue: <%= @invoice.total_revenue %></p>
+  <p>Total Revenue No Discounts: <%= @invoice.total_revenue %></p>
+  <p>Total Revenue With Discounts: <%= @invoice.total_revenue_with_discounts %></p>
 
 
   <h4>Customer:</h4>

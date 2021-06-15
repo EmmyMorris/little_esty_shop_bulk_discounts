@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin Dashboard Index Page' do
+RSpec.describe 'Admin Dashboard Index Page' do
   before :each do
     @m1 = Merchant.create!(name: 'Merchant 1')
 
